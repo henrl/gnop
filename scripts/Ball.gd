@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal out_of_bounds
+
 @export var initial_speed: float = 900
 @export var bounce_factor: float = 1.0
 
@@ -17,3 +19,6 @@ func _on_body_entered(body):
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	rotation_degrees = 0
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	emit_signal("out_of_bounds")
