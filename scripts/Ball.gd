@@ -4,8 +4,11 @@ signal out_of_bounds
 
 @export var initial_speed: float = 900
 @export var bounce_factor: float = 1.0
+@onready var initial_position := position
+@onready var respawn_timer := $RespawnTimer
 
 func _ready():
+	respawn_timer.timeout.connect(_on_respawn_timer_timeout)
 	# Apply initial velocity at a random angle
 	var direction = Vector2.RIGHT.rotated(randf_range(-PI/4, PI/4))
 	linear_velocity = direction * initial_speed
@@ -22,3 +25,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	emit_signal("out_of_bounds")
+	respawn_timer.start()
+
+func _on_respawn_timer_timeout():
+	position = initial_position
+	var direction = Vector2.RIGHT.rotated(randf_range(-PI/4, PI/4))
+	linear_velocity = direction * initial_speed
+	angular_velocity = 0

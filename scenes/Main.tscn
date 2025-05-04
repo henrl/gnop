@@ -93,6 +93,9 @@ grow_vertical = 2
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Ball"]
 
+[node name="RespawnTimer" type="Timer" parent="Ball"]
+one_shot = true
+
 [node name="TopWall" type="StaticBody2D" parent="."]
 position = Vector2(400, 0)
 
