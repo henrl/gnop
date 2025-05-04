@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://chxosdi0tmolu"]
+[gd_scene load_steps=14 format=3 uid="uid://chxosdi0tmolu"]
 
 [ext_resource type="Script" uid="uid://byijcjahpsc6m" path="res://scripts/Main.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://78t4f4eh03x2" path="res://scripts/PlayerPaddle.gd" id="2_rvslj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://hi703slbarpd" path="res://scripts/LivesDisplay.gd" id="4_rarhs"]
 [ext_resource type="PackedScene" uid="uid://hniur3pkdd8i" path="res://scenes/GameOverScreen.tscn" id="5_vcsgt"]
 [ext_resource type="Script" uid="uid://dbhjtiejwuc6f" path="res://scripts/ScoreDisplay.gd" id="6_c01mt"]
+[ext_resource type="Script" uid="uid://7pm8oucqfm1g" path="res://scripts/MultiplierDisplay.gd" id="7_nxtc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvslj"]
 size = Vector2(20, 100)
@@ -181,9 +182,9 @@ horizontal_alignment = 1
 
 [node name="ScoreDisplay" type="HBoxContainer" parent="."]
 offset_left = 158.0
-offset_top = 14.0
+offset_top = 18.0
 offset_right = 240.0
-offset_bottom = 54.0
+offset_bottom = 52.0
 script = ExtResource("6_c01mt")
 
 [node name="ScoreLabel" type="Label" parent="ScoreDisplay"]
@@ -192,6 +193,22 @@ theme_override_font_sizes/font_size = 24
 text = "Score: "
 
 [node name="ScoreCount" type="Label" parent="ScoreDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="MultiplierDisplay" type="HBoxContainer" parent="."]
+offset_left = 500.0
+offset_top = 18.0
+offset_right = 642.0
+offset_bottom = 52.0
+script = ExtResource("7_nxtc6")
+
+[node name="MultiplierLabel" type="Label" parent="MultiplierDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Bonus Multiplier: "
+
+[node name="MultiplierCount" type="Label" parent="MultiplierDisplay"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 
