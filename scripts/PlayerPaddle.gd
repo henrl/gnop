@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 300
+const SPEED = 500
 const PADDLE_HEIGHT = 100 # Should match your paddle height
 
 func _physics_process(delta):

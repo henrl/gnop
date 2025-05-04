@@ -9,8 +9,11 @@ func _ready():
 	linear_velocity = direction * initial_speed
 
 func _on_body_entered(body):
-	# Increase bounce effect when hitting the player paddle
-	print(linear_velocity)
 	if body.is_in_group("paddle"):
-		linear_velocity *= 1.05  # Slight speed increase on paddle hit
-		print(linear_velocity)
+		if linear_velocity.length() < 500:
+			apply_central_impulse(linear_velocity.normalized() * 10)
+		if abs(linear_velocity.normalized().y) > 0.7:
+			apply_central_impulse(Vector2(50, 0))
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	rotation_degrees = 0
