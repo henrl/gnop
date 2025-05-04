@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://chxosdi0tmolu"]
+[gd_scene load_steps=13 format=3 uid="uid://chxosdi0tmolu"]
 
 [ext_resource type="Script" uid="uid://byijcjahpsc6m" path="res://scripts/Main.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://78t4f4eh03x2" path="res://scripts/PlayerPaddle.gd" id="2_rvslj"]
 [ext_resource type="Script" uid="uid://bvhsc270yknyq" path="res://scripts/Ball.gd" id="3_0bbpv"]
 [ext_resource type="Script" uid="uid://hi703slbarpd" path="res://scripts/LivesDisplay.gd" id="4_rarhs"]
+[ext_resource type="PackedScene" uid="uid://hniur3pkdd8i" path="res://scenes/GameOverScreen.tscn" id="5_vcsgt"]
+[ext_resource type="Script" uid="uid://dbhjtiejwuc6f" path="res://scripts/ScoreDisplay.gd" id="6_c01mt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvslj"]
 size = Vector2(20, 100)
@@ -163,6 +165,7 @@ offset_top = 18.0
 offset_right = 113.0
 offset_bottom = 52.0
 script = ExtResource("4_rarhs")
+game_over_screen = ExtResource("5_vcsgt")
 
 [node name="LivesLabel" type="Label" parent="LivesDisplay"]
 layout_mode = 2
@@ -175,6 +178,22 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "3"
 horizontal_alignment = 1
+
+[node name="ScoreDisplay" type="HBoxContainer" parent="."]
+offset_left = 158.0
+offset_top = 14.0
+offset_right = 240.0
+offset_bottom = 54.0
+script = ExtResource("6_c01mt")
+
+[node name="ScoreLabel" type="Label" parent="ScoreDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Score: "
+
+[node name="ScoreCount" type="Label" parent="ScoreDisplay"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
 
 [connection signal="body_entered" from="Ball" to="Ball" method="_on_body_entered"]
 [connection signal="screen_exited" from="Ball/VisibleOnScreenNotifier2D" to="Ball" method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+signal add_score(amount)
 signal out_of_bounds
 
 @export var initial_speed: float = 900
@@ -14,11 +15,14 @@ func _ready():
 	linear_velocity = direction * initial_speed
 
 func _on_body_entered(body):
+	var amt = 20
 	if body.is_in_group("paddle"):
+		amt = 100
 		if linear_velocity.length() < 500:
 			apply_central_impulse(linear_velocity.normalized() * 10)
 		if abs(linear_velocity.normalized().y) > 0.7:
 			apply_central_impulse(Vector2(50, 0))
+	emit_signal("add_score", amt)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	rotation_degrees = 0
